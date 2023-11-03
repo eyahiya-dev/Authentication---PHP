@@ -1,5 +1,22 @@
 <?php
 session_start();
+
+
+$email = $_POST['email']??'';
+$password = $_POST['password']??'';
+
+$errMsg = '';
+
+if ($email == 'johndoe@gmail.com' && $password == "123456789") {
+    $_SESSION['userName'] = 'John Deo';
+    header('location: index.php');
+}elseif ($email == 'janeDoe@yahoo.com'&& $password == '112233'){
+    $_SESSION['userName'] = 'Jane Doe';    
+    header('location: index.php');
+}elseif ($email !== '' || $password !== ''){
+    $errMsg = "Invalid credentials";
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -15,24 +32,18 @@ session_start();
 		<div class='w-full max-w-lg px-10 py-8 mx-auto bg-white rounded-lg shadow-xl'>
 			<div class='max-w-md mx-auto space-y-6'>
 
-				<form method="POST" action="./loginPost.php">
-					<h2 class="text-2xl font-bold text-center">Sign In</h2>					
+				<form method="POST" action="./login.php">
+					<h2 class="text-2xl font-bold text-center">Login</h2>					
 					<hr class="my-6">
-                    <?php
-                    if(isset($_SESSION['signUpMessage'])){                        
-                    }
-                    ?>
-                    <h5 class="mb-5 text-center text-green-500">
-                        <?= $_SESSION['signUpMessage'];?>
-                    </h5>
-                    <?php
-                    ?>
 					<label class="uppercase text-sm font-bold opacity-70">Email</label>
-					<input type="email" placeholder="enter your Email" required name="email"  class="p-3 mt-2 mb-4 w-full bg-slate-200 rounded">
+					<input type="email" placeholder="enter your Email"  required name="email"  class="p-3 mt-2 mb-4 w-full bg-slate-200 rounded">
 					<label class="uppercase text-sm font-bold opacity-70">Password</label>
-					<input type="password" placeholder="type a strong password" required name="password"  class="p-3 mt-2 mb-4 w-full bg-slate-200 rounded">					
+					<input type="password" placeholder="type a strong password" required  name="password"  class="p-3 mt-2 mb-4 w-full bg-slate-200 rounded">					
+                    <div class="text-red-600 mb-5">
+                        <?php echo $errMsg; ?>
+                    </div>
                     <div class="flex justify-between">
-                    <input type="submit" class="py-3 px-6 my-2 bg-emerald-500 text-white font-medium rounded hover:bg-indigo-500 cursor-pointer ease-in-out duration-300" value="Sign In">                    
+                    <input type="submit" class="py-3 px-6 my-2 bg-emerald-500 text-white font-medium rounded hover:bg-indigo-500 cursor-pointer ease-in-out duration-300" value="Login">                    
                     </div>					
 				</form>
 
