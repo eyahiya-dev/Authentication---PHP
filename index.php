@@ -1,6 +1,6 @@
 <?php
 session_start();
-if (!isset($_SESSION["userEmail"]) || $_SESSION["userName"]){
+if (!isset($_SESSION["userName"])){
 	header("location:login.php");
 }
 ?>
@@ -19,10 +19,16 @@ if (!isset($_SESSION["userEmail"]) || $_SESSION["userName"]){
 			<div class='max-w-md mx-auto space-y-6'>
 				<h2 class="text-center font-medium" >
 					<?php
-					echo $_SESSION['userName'];
+					echo "Hey! " . $_SESSION['userName'] . "</br>";
+					echo 'Welcome to Dashboard'
 					?>
 				</h2>
 			</div>
+			<form action="logout.php" method="post">
+			<div class="flex justify-between">
+                    <input type="submit" class="py-3 px-6 my-2 bg-emerald-500 text-white font-medium rounded hover:bg-indigo-500 cursor-pointer ease-in-out duration-300" value="logout">                    
+            </div>
+			</form>	
 		</div>
 	</div>
     </section>
