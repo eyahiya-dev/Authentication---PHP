@@ -1,8 +1,9 @@
 <?php
 session_start();
 
+if (!isset($_SESSION["userName"])){
 
-$email = $_POST['email']??'';
+    $email = $_POST['email']??'';
 $password = $_POST['password']??'';
 
 $errMsg = '';
@@ -16,6 +17,13 @@ if ($email == 'johndoe@gmail.com' && $password == "123456789") {
 }elseif ($email !== '' || $password !== ''){
     $errMsg = "Invalid credentials";
 }
+
+
+}else{
+    header("location:index.php");
+}
+
+
 
 ?>
 <!DOCTYPE html>
