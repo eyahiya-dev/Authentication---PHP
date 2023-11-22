@@ -1,4 +1,6 @@
 <?php
+// start session of user login 
+
 session_start();
 
 if (!isset($_SESSION["userName"])){
